@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Docs — Realtime</title>
+		<link rel="stylesheet" href="/styles.css" />
+		<script>
+			// Replace with your Railway app URL (or set via deployment env)
+			window.SERVER_URL = window.SERVER_URL || 'https://YOUR_RAILWAY_APP_URL';
+		</script>
+		<script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="app">
+			<aside class="sidebar">
+				<div class="header">
+					<div class="brand">Docs</div>
+					<div style="display:flex;gap:8px;align-items:center">
+						<button id="darkToggle" class="toggle">🌙</button>
+					</div>
+				</div>
+				<div class="search">
+					<input id="search" placeholder="Search docs…" />
+				</div>
+				<div class="list-wrap">
+					<ul id="docs" class="doc-list" aria-live="polite"></ul>
+				</div>
+				<div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+					<div class="muted">Status: <span id="status">offline</span></div>
+				</div>
+			</aside>
+			<main class="main">
+				<div class="meta">
+					<input id="title" class="title-input" placeholder="Untitled" />
+					<div class="muted" id="lastUpdated"></div>
+				</div>
+				<div id="editor" class="editor" contenteditable="true" spellcheck="true"></div>
+			</main>
+		</div>
+		<button id="createFab" class="fab">＋</button>
+
+		<!-- Create modal -->
+		<div id="createModal" class="modal-backdrop" aria-hidden="true">
+			<div class="modal" role="dialog" aria-modal="true">
+				<h3>Create document</h3>
+				<div class="field">
+					<label>Title</label>
+					<input id="modalTitle" placeholder="Document title" />
+				</div>
+				<div class="field">
+					<label>Description (optional)</label>
+					<textarea id="modalDesc" rows="3" placeholder="Short description"></textarea>
+				</div>
+				<div class="row">
+					<button id="modalCancel" class="btn-ghost">Cancel</button>
+					<button id="modalCreate" class="btn-primary">Create</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="/main.js"></script>
+	</body>
+</html>
